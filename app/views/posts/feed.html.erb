@@ -1,0 +1,25 @@
+<h1>Feed de Notícias</h1>
+
+<%= render "form", post: @post %>
+
+<% @posts.each do |post| %>
+  <p><%= post.conteudo %></p>
+  <p>
+    Escrito por <%= link_to post.usuario.nome,
+    show_usuario_path(id: post.usuario.id) %>
+  </p>
+  <p>Última atualização: <%= post.ultima_atualizacao %></p>
+  <p>
+  <% if current_user == post.usuario %>
+    <%= link_to "Editar", edit_post_path(post)%>
+  <% end %>
+  <% if current_user == post.usuario || current_user.admin %>
+    <%= link_to "Exluir", posts_path(post), method: :delete,
+    data: { confirm: "Tem cetreza?"} %>
+  <% end %>
+  </p>
+  <br>
+
+<% end %>
+
+<%= will_paginate @posts %>

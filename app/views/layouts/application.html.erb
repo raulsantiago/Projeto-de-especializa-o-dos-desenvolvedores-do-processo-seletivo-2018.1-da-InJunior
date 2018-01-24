@@ -10,8 +10,17 @@
 
   <body>
     <% if logged_in? %>
+    <p>
+      <%= link_to current_user.nome, show_usuario_path(id: current_user.id) %>
+      <%= link_to "Feed", feed_path %>
       <%= link_to "Logout", logout_path, method: :delete %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to "Cadastre-se", new_usuario_path %>
+    </p>
     <% end %>
-    <%= yield %>
+      <%= render "layouts/avisos" %>
+    <%= yield %> <!--#paga a pagida o controle e pararce aqui-->
   </body>
 </html>

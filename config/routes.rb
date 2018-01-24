@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  resources :comentarios
   resources :posts
   root to: "usuarios#index"
 
+
+  # Sessoes controller
+  get 'feed', to: "posts#feed", as: :feed
+  resources :posts
 
   # Sessoes controller
   get 'login', to: "sessoes#new", as: :login

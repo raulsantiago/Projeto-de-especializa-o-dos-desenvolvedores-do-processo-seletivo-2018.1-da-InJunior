@@ -2,6 +2,14 @@
   url: @usuario.persisted? ? :edit_usuario : :new_usuario do |form| %>  <!-- persisted não está no DB logo Atualizar -->
 
 
+  <% if @usuario.errors.any? && @usuario.errors[:avatar] %>
+    <%= form.label "Foto de perfil #{@usuario.errors[:avatar].first}" %>
+  <% else %>
+    <%= form.label "Foto de perfil" %>
+  <% end %>
+  <%= form.file_field :avatar %>
+  <br>
+
   <% if @usuario.errors.any? && @usuario.errors[:nome] %>
     <%= form.label "Nome #{@usuario.errors[:nome].first}" %>
   <% else %>
