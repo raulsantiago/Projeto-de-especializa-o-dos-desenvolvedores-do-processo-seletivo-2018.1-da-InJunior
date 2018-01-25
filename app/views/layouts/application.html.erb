@@ -5,7 +5,6 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -22,5 +21,6 @@
     <% end %>
       <%= render "layouts/avisos" %>
     <%= yield %> <!--#paga a pagida o controle e pararce aqui-->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>

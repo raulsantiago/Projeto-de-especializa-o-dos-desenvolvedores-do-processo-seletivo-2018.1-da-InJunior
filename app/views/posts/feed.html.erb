@@ -1,9 +1,14 @@
 <h1>Feed de Notícias</h1>
 
 <%= render "form", post: @post %>
+<br>
 
 <% @posts.each do |post| %>
   <p><%= post.conteudo %></p>
+
+    <% @post = post %>
+    <%= render "voto" %>
+
   <p>
     Escrito por <%= link_to post.usuario.nome,
     show_usuario_path(id: post.usuario.id) %>

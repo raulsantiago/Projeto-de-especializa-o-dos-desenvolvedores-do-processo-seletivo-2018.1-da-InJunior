@@ -4,6 +4,8 @@ class Usuario < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  belongs_to :cidade, optional: true
 
   validates_presence_of :avatar # exigir foto obrigatoria
   validates :nome, presence: true, length: { in: 2..20 }

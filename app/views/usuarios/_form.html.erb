@@ -72,6 +72,17 @@
   <br>
 
 
+  <%= form.label "Estado" %>
+    <%= select("", "estado_id", Estado.all.collect {|estado| [ estado.uf,
+      estado.id ] }, {include_blank: "Estado"}, id: :estado) %>
+    <br>
+
+    <%= form.label "Cidade" %>
+    <select name="usuario[cidade_id]" id="cidade" disabled> <!-- select sem  pr vai usar ajax -->
+  		<option value=""></option>
+  	</select>
+    <br>
+
 
 
   <% if @usuario.persisted? %> <!-- persisted não está no DB logo Atualizar -->

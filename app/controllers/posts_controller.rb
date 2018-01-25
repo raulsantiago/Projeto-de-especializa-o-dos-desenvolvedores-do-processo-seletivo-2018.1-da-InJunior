@@ -4,6 +4,28 @@ class PostsController < ApplicationController
   before_action :usuario_correto, only: [:edit, :update] #tem que estar em baixo dos supracitado se não não vai saber que é o usurio para editar
   before_action :usuario_correto_ou_admin, only: [:destroy]
 
+  # PATCH curtir/1
+  def curtir
+    @post = Post.find_by(id: params[:post_id])
+    current_user.likes.build(post_id: params[:post_id]).save
+
+    respond_to do |format|
+      format.html { redirect_to feed_path }
+      format.js
+    end
+  end
+
+  # PATCH descurtir/1
+  def descurtir
+    @post = Post.find_by(id: params[:post_id])
+    current_user.likes.find_by(post_id: params[:post_id]).destroy
+
+    respond_to do |format|
+      format.html { redirect_to feed_path }
+      format.js
+    end
+  end
+
   # GET /posts
   # GET /posts.json
   def index
